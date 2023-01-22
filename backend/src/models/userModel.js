@@ -4,21 +4,21 @@ import bcrypt from 'bcryptjs';
 const userSchema = mongoose.Schema({
     firstName: {
         type: String,
-        required: true,
+        required: [true, 'Please enter your first name'],
         minlength: 3,
         maxlength: 250,
         trim: true
     },
     lastName: {
         type: String,
-        required: true,
+        required: [true, 'Please enter your last name'],
         minlength: 3,
         maxlength: 250,
         trim: true
     },
     email: {
         type: String,
-        required: true,
+        required: [true, 'Please enter your email'],
         minlength: 3,
         maxlength: 30, 
         trim: true,
@@ -37,19 +37,19 @@ const userSchema = mongoose.Schema({
 },
 {timestamps: true});
 
-userSchema.pre('save', async function(next) {
-    if (!this.isModified('password')) {
-         next();
-    }
+// userSchema.pre('save', async function(next) {
+//     if (!this.isModified('password')) {
+//          next();
+//     }
 
-    const salt = await bcrypt.genSalt(10);
-    this.password = await bcrypt.hash(this.password, salt);
-}
-);
+//     const salt = await bcrypt.genSalt(10);
+//     const password = await bcrypt.hash(this.password, salt);
+// }
+// );
 
-userSchema.methods.matchPassword = async function(newPassword) {
-    return await bcrypt.compare(newPassword, this.password);
-}
+// userSchema.methods.matchPassword = async function(newPassword) {
+//     return await bcrypt.compare(newPassword, this.password);
+// }
 
 /* userSchema.virtual('password')
     .set(function (password) {

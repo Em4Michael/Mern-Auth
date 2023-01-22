@@ -13,6 +13,8 @@
   "author": "em4michael",
   "license": "ISC",
   "dependencies": {
+    "@fortawesome/free-brands-svg-icons": "^6.2.1",
+    "axios": "^1.2.3",
     "bcrypt": "^5.0.1",
     "bcryptjs": "^2.4.3",
     "colors": "^1.4.0",
@@ -24,7 +26,8 @@
     "joi": "^17.6.0",
     "joi-password-complexity": "^5.1.0",
     "jsonwebtoken": "^8.5.1",
-    "mongoose": "^6.5.2"
+    "mongoose": "^6.5.2",
+    "react-toastify": "^9.1.1"
   },
   "devDependencies": {
     "nodemon": "^2.0.19"

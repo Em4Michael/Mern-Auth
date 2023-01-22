@@ -1,19 +1,20 @@
 import jwt from 'jsonwebtoken';
 import asyncHandler from 'express-async-handler';
-import userModel from '../src/models/userModel.js';
+import User from '../src/models/userModel.js';
 
 const protect = asyncHandler(async(req, res, next) => {
     let token
 
     if(req.headers.authorization && req.headers.authorization.startsWith('Bearer')){
         try {
+            //get the token
             token = req.headers.authorization.split(' ')[1]
 
             //verify token
             const decoded = jwt.verify(token, process.env.ACCESS_JWT_SECRET)
 
             //Get user from the token
-            req.User = await userModel.findById(decoded.id).select('-password')
+            req.User = await User.findById(decoded.id).select('-password')
 
             next()
         } catch (error) {

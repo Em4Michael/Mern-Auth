@@ -8,6 +8,7 @@ import user from './data/users.js';
 import auth from './routes/auth.js';
 
 import userRoutes from './routes/userRoutes.js';
+import goalRoutes from './routes/goalRoutes.js'
 import { notFound, errorHandler } from '../middlewares/errorMiddleware.js';
 
 // Connect to database
@@ -20,16 +21,18 @@ app.use(express.urlencoded({ extended: false }));
 
 
 
- app.get('/', (req, res) => {
+app.get('/', (req, res) => {
     res.send('Hello World');
-    res.json({
+    res.status(200).res.json({
         message: 'Hello World'
     });
 
 });
 
 
-app.use('/api/register', userRoutes)
+app.use('/api/user', userRoutes)
+app.use('/api/goals', goalRoutes)
+
 
 
 /*
@@ -38,10 +41,10 @@ app.get('/api/users', (req, res) => {
 })
  */
 //app.get('/api/users/:id', (req, res) => {
-    /*  const { id } = req.params; */
-  //  const User = user.find((n) => n._id === req.params.id);
-    /* if (!user) return res.status(404).send('The user with given ID was not found.'); */
-    //res.send(User);
+/*  const { id } = req.params; */
+//  const User = user.find((n) => n._id === req.params.id);
+/* if (!user) return res.status(404).send('The user with given ID was not found.'); */
+//res.send(User);
 //});
 
 
